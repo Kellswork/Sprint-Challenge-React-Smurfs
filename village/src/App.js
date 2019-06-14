@@ -5,6 +5,7 @@ import "./App.css";
 import SmurfForm from "./components/SmurfForm";
 import Smurfs from "./components/Smurfs";
 import SmurfNav from "./components/SmurfNav";
+import Smurf from "./components/Smurf";
 
 const smurfsApi = "http://localhost:3333/smurfs";
 
@@ -35,7 +36,6 @@ class App extends Component {
     return this.state.smurfs.find(smurf => smurf.id === parseInt(id, 10));
   };
 
-
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
@@ -64,6 +64,7 @@ class App extends Component {
             />
           )}
         />
+        <Route path="/smurf/:id" component={Smurf} />
       </div>
     );
   }
