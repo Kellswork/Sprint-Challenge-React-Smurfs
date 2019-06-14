@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export default function smurfNav() {
     return (
         <div>
-            <Link to='/'>Smurfs</Link>
-            <Link to='/smurf-form'>Create Smurf</Link>
+            <NavLink to='/'>Smurfs</NavLink>
+            <NavLink to='/smurf-form'>Create Smurf</NavLink>
         </div>
     )
 }
