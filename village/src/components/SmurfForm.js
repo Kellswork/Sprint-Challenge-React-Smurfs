@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+const smurfsApi = "http://localhost:3333/smurfs";
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -13,12 +16,24 @@ class SmurfForm extends Component {
   addSmurf = event => {
     event.preventDefault();
     // add code to create the smurf using the api
+    const smurf = {
+      name: this.state.name,
+      age: this.state.age,
+      height: this.state.height
+    }
+    axios.post(smurfsApi, {...smurf})
+    .then(() => {
+      this.props.getAllSmurfs();
+    })
 
     this.setState({
       name: '',
       age: '',
       height: ''
     });
+
+   
+
   }
 
   handleInputChange = e => {
