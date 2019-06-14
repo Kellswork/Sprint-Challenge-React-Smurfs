@@ -5,7 +5,7 @@ export default function smurfNav() {
     return (
         <div>
             <NavLink to='/'>Smurfs</NavLink>
-            <NavLink to='/smurf-form'>Create Smurf</NavLink>
+            <NavLink to='/smurf-form/ '>Add Smurf</NavLink>
         </div>
     )
 }

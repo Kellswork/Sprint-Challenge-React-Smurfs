@@ -22,12 +22,20 @@ class App extends Component {
     });
   };
 
-  deleteSmurf = id => {
-    axios.delete(`${smurfsApi}/${id}`).then(() => this.getAllSmurfs());
-  };
   componentDidMount() {
     this.getAllSmurfs();
   }
+
+  deleteSmurf = id => {
+    axios.delete(`${smurfsApi}/${id}`).then(() => this.getAllSmurfs());
+  };
+
+  editSmurf = id => {
+    this.getAllSmurfs();
+    return this.state.smurfs.find(smurf => smurf.id === parseInt(id, 10));
+  };
+
+
   // add any needed code to ensure that the smurfs collection exists on state and it has data coming from the server
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
@@ -36,13 +44,25 @@ class App extends Component {
       <div className="App">
         <SmurfNav />
         <Route
-          path="/smurf-form"
-          render={() => <SmurfForm getAllSmurfs={this.getAllSmurfs} />}
+          path="/smurf-form/:id"
+          render={props => (
+            <SmurfForm
+              getAllSmurfs={this.getAllSmurfs}
+              editSmurf={this.editSmurf}
+              {...props}
+            />
+          )}
         />
         <Route
           exact={true}
           path="/"
-          render={() => <Smurfs smurfs={this.state.smurfs} deleteSmurf={this.deleteSmurf} />}
+          render={props => (
+            <Smurfs
+              smurfs={this.state.smurfs}
+              deleteSmurf={this.deleteSmurf}
+              {...props}
+            />
+          )}
         />
       </div>
     );
